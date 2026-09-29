@@ -1,0 +1,1645 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>WarehouseSlot | Smart Warehouse Management</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="header">
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                <span>WS</span>
+            </div>
+
+            <div class="brand-text">
+                <h1>WarehouseSlot</h1>
+                <p>Smart warehouse management</p>
+            </div>
+
+        </div>
+
+        <div class="header-right">
+
+            <div class="system-status">
+                <span class="status-dot"></span>
+                <span>Backend Connected</span>
+            </div>
+
+            <div class="admin-avatar">
+                A
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="container">
+
+
+        <!-- =================================================
+             NAVIGATION
+        ================================================== -->
+
+        <nav class="tabs">
+
+            <button
+                    class="tab-button active"
+                    data-tab="dashboardSection"
+                    onclick="showSection('dashboardSection', this)">
+
+                <span class="nav-icon">⌂</span>
+                Dashboard
+
+            </button>
+
+            <button
+                    class="tab-button"
+                    data-tab="productsSection"
+                    onclick="showSection('productsSection', this)">
+
+                <span class="nav-icon">▣</span>
+                Products
+
+            </button>
+
+            <button
+                    class="tab-button"
+                    data-tab="binsSection"
+                    onclick="showSection('binsSection', this)">
+
+                <span class="nav-icon">▤</span>
+                Bins
+
+            </button>
+
+            <button
+                    class="tab-button"
+                    data-tab="stockSection"
+                    onclick="showSection('stockSection', this)">
+
+                <span class="nav-icon">↓</span>
+                Receive Stock
+
+            </button>
+
+            <button
+                    class="tab-button"
+                    data-tab="ordersSection"
+                    onclick="showSection('ordersSection', this)">
+
+                <span class="nav-icon">☷</span>
+                Orders
+
+            </button>
+
+            <button
+                    class="tab-button"
+                    data-tab="pickListSection"
+                    onclick="showSection('pickListSection', this)">
+
+                <span class="nav-icon">✓</span>
+                Pick Lists
+
+            </button>
+
+        </nav>
+
+
+        <!-- =================================================
+             DASHBOARD
+        ================================================== -->
+
+        <section id="dashboardSection" class="section active">
+
+
+            <!-- HERO -->
+
+            <div class="hero">
+
+                <div class="hero-content">
+
+                    <div class="hero-label">
+                        <span></span>
+                        WAREHOUSE OPERATIONS
+                    </div>
+
+                    <h2>
+                        Run your warehouse
+                        <strong>smarter.</strong>
+                    </h2>
+
+                    <p>
+                        Manage products, storage bins, incoming stock,
+                        outgoing orders and optimized picking routes
+                        from one simple dashboard.
+                    </p>
+
+                    <div class="hero-actions">
+
+                        <button
+                                class="hero-primary"
+                                onclick="showSection(
+                                'stockSection',
+                                document.querySelector('[data-tab=stockSection]')
+                                )">
+
+                            <span>＋</span>
+                            Receive Stock
+
+                        </button>
+
+                        <button
+                                class="hero-secondary"
+                                onclick="showSection(
+                                'pickListSection',
+                                document.querySelector('[data-tab=pickListSection]')
+                                )">
+
+                            Generate Pick List
+                            <span>→</span>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="hero-visual">
+
+                    <div class="warehouse-orb orb-one"></div>
+                    <div class="warehouse-orb orb-two"></div>
+
+                    <div class="warehouse-icon">
+                        <div class="warehouse-roof"></div>
+
+                        <div class="warehouse-body">
+
+                            <div class="warehouse-door"></div>
+
+                            <div class="warehouse-box box-one"></div>
+                            <div class="warehouse-box box-two"></div>
+                            <div class="warehouse-box box-three"></div>
+
+                        </div>
+                    </div>
+
+                    <div class="floating-card floating-card-one">
+                        <span class="floating-icon">📦</span>
+                        <div>
+                            <strong>Stock</strong>
+                            <small>Optimized</small>
+                        </div>
+                    </div>
+
+                    <div class="floating-card floating-card-two">
+                        <span class="floating-icon">✓</span>
+                        <div>
+                            <strong>Routes</strong>
+                            <small>Shortest path</small>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- STATISTICS -->
+
+            <div class="section-heading dashboard-heading">
+
+                <div>
+                    <span class="eyebrow">OVERVIEW</span>
+                    <h2>Warehouse at a glance</h2>
+                </div>
+
+                <span class="live-indicator">
+                    <span></span>
+                    Live data
+                </span>
+
+            </div>
+
+
+            <div class="stats-grid">
+
+
+                <div class="stat-card stat-blue">
+
+                    <div class="stat-top">
+
+                        <div class="stat-icon">
+                            📦
+                        </div>
+
+                        <span class="stat-label">
+                            CATALOGUE
+                        </span>
+
+                    </div>
+
+                    <div class="stat-number" id="productCount">
+                        0
+                    </div>
+
+                    <div class="stat-title">
+                        Products
+                    </div>
+
+                    <div class="stat-description">
+                        Items in your catalogue
+                    </div>
+
+                    <div class="stat-decoration"></div>
+
+                </div>
+
+
+                <div class="stat-card stat-green">
+
+                    <div class="stat-top">
+
+                        <div class="stat-icon">
+                            🗄
+                        </div>
+
+                        <span class="stat-label">
+                            STORAGE
+                        </span>
+
+                    </div>
+
+                    <div class="stat-number" id="binCount">
+                        0
+                    </div>
+
+                    <div class="stat-title">
+                        Storage Bins
+                    </div>
+
+                    <div class="stat-description">
+                        Available warehouse locations
+                    </div>
+
+                    <div class="stat-decoration"></div>
+
+                </div>
+
+
+                <div class="stat-card stat-orange">
+
+                    <div class="stat-top">
+
+                        <div class="stat-icon">
+                            📋
+                        </div>
+
+                        <span class="stat-label">
+                            OUTGOING
+                        </span>
+
+                    </div>
+
+                    <div class="stat-number" id="orderCount">
+                        0
+                    </div>
+
+                    <div class="stat-title">
+                        Orders
+                    </div>
+
+                    <div class="stat-description">
+                        Outgoing customer orders
+                    </div>
+
+                    <div class="stat-decoration"></div>
+
+                </div>
+
+
+                <div class="stat-card stat-purple">
+
+                    <div class="stat-top">
+
+                        <div class="stat-icon">
+                            🚚
+                        </div>
+
+                        <span class="stat-label">
+                            PICKING
+                        </span>
+
+                    </div>
+
+                    <div class="stat-number" id="pickListCount">
+                        0
+                    </div>
+
+                    <div class="stat-title">
+                        Pick Lists
+                    </div>
+
+                    <div class="stat-description">
+                        Routes generated
+                    </div>
+
+                    <div class="stat-decoration"></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- WORKFLOW -->
+
+            <div class="content-box workflow-box">
+
+                <div class="box-heading">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            WORKFLOW
+                        </span>
+
+                        <h3>
+                            Warehouse operation flow
+                        </h3>
+
+                        <p>
+                            Follow these steps to manage your warehouse efficiently.
+                        </p>
+
+                    </div>
+
+                    <div class="workflow-badge">
+                        6 Steps
+                    </div>
+
+                </div>
+
+
+                <div class="workflow-grid">
+
+
+                    <div
+                            class="workflow-card"
+                            onclick="showSection(
+                            'productsSection',
+                            document.querySelector('[data-tab=productsSection]')
+                            )">
+
+                        <div class="workflow-number">
+                            01
+                        </div>
+
+                        <div class="workflow-icon blue">
+                            📦
+                        </div>
+
+                        <h4>
+                            Add Products
+                        </h4>
+
+                        <p>
+                            Define product name, SKU and movement velocity.
+                        </p>
+
+                        <span class="workflow-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+
+                    <div
+                            class="workflow-card"
+                            onclick="showSection(
+                            'binsSection',
+                            document.querySelector('[data-tab=binsSection]')
+                            )">
+
+                        <div class="workflow-number">
+                            02
+                        </div>
+
+                        <div class="workflow-icon green">
+                            🗄
+                        </div>
+
+                        <h4>
+                            Create Bins
+                        </h4>
+
+                        <p>
+                            Configure warehouse storage locations and capacity.
+                        </p>
+
+                        <span class="workflow-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+
+                    <div
+                            class="workflow-card"
+                            onclick="showSection(
+                            'stockSection',
+                            document.querySelector('[data-tab=stockSection]')
+                            )">
+
+                        <div class="workflow-number">
+                            03
+                        </div>
+
+                        <div class="workflow-icon orange">
+                            ↓
+                        </div>
+
+                        <h4>
+                            Receive Stock
+                        </h4>
+
+                        <p>
+                            Automatically assign incoming stock to suitable bins.
+                        </p>
+
+                        <span class="workflow-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+
+                    <div
+                            class="workflow-card"
+                            onclick="showSection(
+                            'ordersSection',
+                            document.querySelector('[data-tab=ordersSection]')
+                            )">
+
+                        <div class="workflow-number">
+                            04
+                        </div>
+
+                        <div class="workflow-icon purple">
+                            ☷
+                        </div>
+
+                        <h4>
+                            Create Order
+                        </h4>
+
+                        <p>
+                            Create outgoing orders and add required products.
+                        </p>
+
+                        <span class="workflow-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+
+                    <div
+                            class="workflow-card"
+                            onclick="showSection(
+                            'pickListSection',
+                            document.querySelector('[data-tab=pickListSection]')
+                            )">
+
+                        <div class="workflow-number">
+                            05
+                        </div>
+
+                        <div class="workflow-icon teal">
+                            ⚡
+                        </div>
+
+                        <h4>
+                            Generate Pick List
+                        </h4>
+
+                        <p>
+                            Generate an optimized route based on bin distance.
+                        </p>
+
+                        <span class="workflow-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+
+                    <div
+                            class="workflow-card"
+                            onclick="showSection(
+                            'pickListSection',
+                            document.querySelector('[data-tab=pickListSection]')
+                            )">
+
+                        <div class="workflow-number">
+                            06
+                        </div>
+
+                        <div class="workflow-icon red">
+                            ✓
+                        </div>
+
+                        <h4>
+                            Complete Picking
+                        </h4>
+
+                        <p>
+                            Complete the route and automatically update stock.
+                        </p>
+
+                        <span class="workflow-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             PRODUCTS
+        ================================================== -->
+
+        <section id="productsSection" class="section">
+
+            <div class="page-header">
+
+                <div>
+                    <span class="eyebrow">INVENTORY</span>
+                    <h2>Products</h2>
+                    <p>
+                        Add and manage products stored in your warehouse.
+                    </p>
+                </div>
+
+                <div class="page-icon blue">
+                    📦
+                </div>
+
+            </div>
+
+
+            <div class="content-box">
+
+                <div class="box-heading">
+
+                    <div>
+                        <h3>Add new product</h3>
+                        <p>
+                            Enter the basic product information below.
+                        </p>
+                    </div>
+
+                    <span class="form-required">
+                        * Required fields
+                    </span>
+
+                </div>
+
+
+                <form id="productForm">
+
+                    <div class="form-grid three">
+
+                        <div class="form-group">
+
+                            <label for="productName">
+                                Product Name
+                            </label>
+
+                            <input
+                                    type="text"
+                                    id="productName"
+                                    placeholder="Example: Premium Rice"
+                                    required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="productSku">
+                                SKU
+                            </label>
+
+                            <input
+                                    type="text"
+                                    id="productSku"
+                                    placeholder="Example: RICE001"
+                                    required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="productVelocity">
+                                Movement Velocity
+                            </label>
+
+                            <select
+                                    id="productVelocity"
+                                    required
+                            >
+
+                                <option value="">
+                                    Select velocity
+                                </option>
+
+                                <option value="FAST">
+                                    FAST
+                                </option>
+
+                                <option value="MEDIUM">
+                                    MEDIUM
+                                </option>
+
+                                <option value="SLOW">
+                                    SLOW
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-actions">
+
+                        <button
+                                type="submit"
+                                class="primary-button">
+
+                            <span>＋</span>
+                            Add Product
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <div class="content-box">
+
+                <div class="box-heading table-heading">
+
+                    <div>
+                        <h3>Product catalogue</h3>
+                        <p>
+                            All products currently registered.
+                        </p>
+                    </div>
+
+                    <div class="table-count">
+                        <span id="productTableCount">0</span>
+                        products
+                    </div>
+
+                </div>
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                        <tr>
+                            <th>ID</th>
+                            <th>PRODUCT</th>
+                            <th>SKU</th>
+                            <th>VELOCITY</th>
+                            <th>ACTIONS</th>
+                        </tr>
+
+                        </thead>
+
+                        <tbody id="productsTableBody">
+
+                        <tr>
+                            <td
+                                    colspan="5"
+                                    class="empty-row">
+
+                                No products yet. Add your first product above.
+
+                            </td>
+                        </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             BINS
+        ================================================== -->
+
+        <section id="binsSection" class="section">
+
+            <div class="page-header">
+
+                <div>
+                    <span class="eyebrow">STORAGE</span>
+                    <h2>Warehouse Bins</h2>
+                    <p>
+                        Create and manage warehouse storage locations.
+                    </p>
+                </div>
+
+                <div class="page-icon green">
+                    🗄
+                </div>
+
+            </div>
+
+
+            <div class="content-box">
+
+                <div class="box-heading">
+
+                    <div>
+                        <h3>Create storage bin</h3>
+                        <p>
+                            Configure location, distance and capacity.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <form id="binForm">
+
+                    <div class="form-grid four">
+
+                        <div class="form-group">
+
+                            <label for="binCode">
+                                Bin Code
+                            </label>
+
+                            <input
+                                    type="text"
+                                    id="binCode"
+                                    placeholder="Example: A-01"
+                                    required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="binZone">
+                                Zone
+                            </label>
+
+                            <input
+                                    type="text"
+                                    id="binZone"
+                                    placeholder="Example: A"
+                                    required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="binDistance">
+                                Distance
+                            </label>
+
+                            <input
+                                    type="number"
+                                    id="binDistance"
+                                    min="0"
+                                    step="0.01"
+                                    placeholder="Example: 10"
+                                    required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="binCapacity">
+                                Capacity
+                            </label>
+
+                            <input
+                                    type="number"
+                                    id="binCapacity"
+                                    min="1"
+                                    step="0.01"
+                                    placeholder="Example: 100"
+                                    required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <button
+                                type="submit"
+                                class="primary-button">
+
+                            <span>＋</span>
+                            Add Bin
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <div class="content-box">
+
+                <div class="box-heading table-heading">
+
+                    <div>
+                        <h3>Storage locations</h3>
+                        <p>
+                            Current warehouse bin configuration.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                        <tr>
+                            <th>ID</th>
+                            <th>BIN</th>
+                            <th>ZONE</th>
+                            <th>DISTANCE</th>
+                            <th>CAPACITY</th>
+                            <th>CURRENT QTY</th>
+                            <th>ACTIONS</th>
+                        </tr>
+
+                        </thead>
+
+                        <tbody id="binsTableBody">
+
+                        <tr>
+                            <td colspan="7" class="empty-row">
+                                No bins yet. Add your first bin above.
+                            </td>
+                        </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             STOCK
+        ================================================== -->
+
+        <section id="stockSection" class="section">
+
+            <div class="page-header">
+
+                <div>
+                    <span class="eyebrow">INBOUND</span>
+                    <h2>Receive Stock</h2>
+                    <p>
+                        Receive incoming stock and automatically assign a suitable bin.
+                    </p>
+                </div>
+
+                <div class="page-icon orange">
+                    ↓
+                </div>
+
+            </div>
+
+
+            <div class="content-box">
+
+                <div class="box-heading">
+
+                    <div>
+                        <h3>Receive incoming stock</h3>
+                        <p>
+                            The system will select an appropriate storage bin automatically.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <form id="stockForm">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label for="stockProduct">
+                                Product
+                            </label>
+
+                            <select id="stockProduct" required>
+
+                                <option value="">
+                                    Select product
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="stockQuantity">
+                                Quantity
+                            </label>
+
+                            <input
+                                    type="number"
+                                    id="stockQuantity"
+                                    min="0.01"
+                                    step="0.01"
+                                    placeholder="Example: 50"
+                                    required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-banner">
+
+                        <span class="info-icon">💡</span>
+
+                        <div>
+                            <strong>Smart bin assignment</strong>
+                            <p>
+                                The backend selects a suitable bin based on
+                                availability and warehouse rules.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <button
+                                type="submit"
+                                class="primary-button">
+
+                            <span>↓</span>
+                            Receive Stock
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <div class="content-box">
+
+                <div class="box-heading table-heading">
+
+                    <div>
+                        <h3>Current stock</h3>
+                        <p>
+                            Stock currently stored in warehouse bins.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                        <tr>
+                            <th>ID</th>
+                            <th>PRODUCT</th>
+                            <th>BIN</th>
+                            <th>QUANTITY</th>
+                            <th>ACTIONS</th>
+                        </tr>
+
+                        </thead>
+
+                        <tbody id="stockTableBody">
+
+                        <tr>
+                            <td colspan="5" class="empty-row">
+                                No stock received yet.
+                            </td>
+                        </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             ORDERS
+        ================================================== -->
+
+        <section id="ordersSection" class="section">
+
+            <div class="page-header">
+
+                <div>
+                    <span class="eyebrow">OUTBOUND</span>
+                    <h2>Orders</h2>
+                    <p>
+                        Create outgoing orders and prepare products for picking.
+                    </p>
+                </div>
+
+                <div class="page-icon purple">
+                    ☷
+                </div>
+
+            </div>
+
+
+            <div class="content-box">
+
+                <div class="box-heading">
+
+                    <div>
+                        <h3>Create outgoing order</h3>
+                        <p>
+                            Start a new warehouse order.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <form id="orderForm">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label for="orderNumber">
+                                Order Number
+                            </label>
+
+                            <input
+                                    type="text"
+                                    id="orderNumber"
+                                    placeholder="Example: ORD-1001"
+                                    required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <button
+                                type="submit"
+                                class="primary-button">
+
+                            <span>＋</span>
+                            Create Order
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <div class="content-box">
+
+                <div class="box-heading table-heading">
+
+                    <div>
+                        <h3>Order list</h3>
+                        <p>
+                            All outgoing orders and their current status.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                        <tr>
+                            <th>ID</th>
+                            <th>ORDER NUMBER</th>
+                            <th>STATUS</th>
+                            <th>CREATED</th>
+                            <th>ACTIONS</th>
+                        </tr>
+
+                        </thead>
+
+                        <tbody id="ordersTableBody">
+
+                        <tr>
+                            <td colspan="5" class="empty-row">
+                                No orders yet.
+                            </td>
+                        </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <div class="content-box order-items-section">
+
+                <div class="box-heading">
+
+                    <div>
+                        <h3>Add order items</h3>
+                        <p>
+                            Select an order and the products that need to be picked.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <form id="orderItemForm">
+
+                    <div class="form-grid three">
+
+                        <div class="form-group">
+
+                            <label for="orderItemOrder">
+                                Order
+                            </label>
+
+                            <select id="orderItemOrder" required>
+
+                                <option value="">
+                                    Select order
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="orderItemProduct">
+                                Product
+                            </label>
+
+                            <select id="orderItemProduct" required>
+
+                                <option value="">
+                                    Select product
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="orderItemQuantity">
+                                Quantity
+                            </label>
+
+                            <input
+                                    type="number"
+                                    id="orderItemQuantity"
+                                    min="0.01"
+                                    step="0.01"
+                                    placeholder="Example: 5"
+                                    required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <button
+                                type="submit"
+                                class="primary-button">
+
+                            <span>＋</span>
+                            Add Order Item
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <div class="content-box">
+
+                <div class="box-heading">
+
+                    <div>
+                        <h3>View order items</h3>
+                        <p>
+                            See the products and quantities assigned to an order.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="form-group select-narrow">
+
+                    <label for="viewOrderItems">
+                        Select order
+                    </label>
+
+                    <select id="viewOrderItems">
+
+                        <option value="">
+                            Select order
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                        <tr>
+                            <th>ID</th>
+                            <th>PRODUCT</th>
+                            <th>SKU</th>
+                            <th>QUANTITY</th>
+                            <th>ACTIONS</th>
+                        </tr>
+
+                        </thead>
+
+                        <tbody id="orderItemsTableBody">
+
+                        <tr>
+                            <td colspan="5" class="empty-row">
+                                Select an order to view its items.
+                            </td>
+                        </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             PICK LISTS
+        ================================================== -->
+
+        <section id="pickListSection" class="section">
+
+            <div class="page-header">
+
+                <div>
+                    <span class="eyebrow">OPTIMIZATION</span>
+                    <h2>Pick Lists</h2>
+                    <p>
+                        Generate optimized warehouse picking routes.
+                    </p>
+                </div>
+
+                <div class="page-icon teal">
+                    ⚡
+                </div>
+
+            </div>
+
+
+            <div class="content-box">
+
+                <div class="box-heading">
+
+                    <div>
+                        <h3>Generate optimized pick list</h3>
+                        <p>
+                            Select an order and create a route sorted by bin distance.
+                        </p>
+                    </div>
+
+                    <div class="optimization-badge">
+                        ⚡ Smart Route
+                    </div>
+
+                </div>
+
+
+                <form id="pickListForm">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label for="pickOrder">
+                                Select Order
+                            </label>
+
+                            <select id="pickOrder" required>
+
+                                <option value="">
+                                    Select order
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="route-preview">
+
+                        <div class="route-icon">
+                            ↝
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Optimized picking sequence
+                            </strong>
+
+                            <p>
+                                Stock is taken from the nearest available bins,
+                                reducing unnecessary walking distance.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <button
+                                type="submit"
+                                class="primary-button">
+
+                            <span>⚡</span>
+                            Generate Pick List
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <div class="content-box">
+
+                <div class="box-heading table-heading">
+
+                    <div>
+                        <h3>Generated pick lists</h3>
+                        <p>
+                            Manage and complete warehouse picking routes.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                        <tr>
+                            <th>ID</th>
+                            <th>ORDER</th>
+                            <th>STATUS</th>
+                            <th>CREATED</th>
+                            <th>ACTIONS</th>
+                        </tr>
+
+                        </thead>
+
+                        <tbody id="pickListsTableBody">
+
+                        <tr>
+                            <td colspan="5" class="empty-row">
+                                No pick lists yet.
+                            </td>
+                        </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <div class="content-box">
+
+                <div class="box-heading">
+
+                    <div>
+                        <h3>Pick list items</h3>
+                        <p>
+                            Items appear in the order the picker should visit each bin.
+                        </p>
+                    </div>
+
+                    <div class="route-badge">
+                        SHORTEST ROUTE
+                    </div>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                        <tr>
+                            <th>SEQUENCE</th>
+                            <th>PRODUCT</th>
+                            <th>BIN</th>
+                            <th>DISTANCE</th>
+                            <th>QUANTITY</th>
+                        </tr>
+
+                        </thead>
+
+                        <tbody id="pickListTableBody">
+
+                        <tr>
+                            <td colspan="5" class="empty-row">
+                                Click View on a pick list to see its picking sequence.
+                            </td>
+                        </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         TOAST
+    ====================================================== -->
+
+    <div id="message"></div>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="footer">
+
+        <div class="footer-brand">
+            <div class="footer-logo">
+                WS
+            </div>
+
+            <div>
+                <strong>WarehouseSlot</strong>
+                <span>Smart warehouse management</span>
+            </div>
+        </div>
+
+        <div class="footer-right">
+            © 2026 WarehouseSlot · Bin slotting & pick-list generator
+        </div>
+
+    </footer>
+
+</div>
+
+
+<script src="app.js"></script>
+
+</body>
+</html>
